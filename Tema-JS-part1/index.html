@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tema JS part 1t</title>
+    <title>Tema JS part 1</title>
 </head>
 
 <body>
+
     <script>
         /** 1. O functie care compara 2 valori si returneaza true daca sunt egale si false daca nu sunt egale
          */
@@ -45,9 +46,9 @@
                 return a;
             } else if (a < b) {
                 return b;
-            } else {
-                return "The numbers are equal";
+
             }
+
         }
 
         console.log(valoareMaxima(2, 1));
@@ -61,8 +62,6 @@
                 return a;
             } else if (a > b) {
                 return b;
-            } else {
-                return "The numbers are equal";
             }
         }
 
@@ -86,10 +85,10 @@
         function numarPrim(n) {
             for (i = 2; i < n; i++) {
                 if (n % i === 0) {
-                    return n + " Nu este numar prim.";
+                    return false;
                 }
             }
-            return n + " Este numar prim.";
+            return true;
         }
 
         console.log(numarPrim(3));
@@ -181,18 +180,15 @@
                 if (max < arr[i]) {
                     max = arr[i];
                 }
-
-            }
-
-            for (i = 0; i < arr.length; i++) {
                 if (min > arr[i]) {
                     min = arr[i];
                 }
+
             }
             return max + min;
         }
 
-        console.log(sumaMaxMin([3, 4, 22, 3, 4, 2]));
+        console.log(sumaMaxMin([3, 4, 22, 100, 3, 1, 4, 2]));
 
         /** 13. O functie care verifica daca exista duplicate intr-un array primit ca parametru
          */
@@ -200,11 +196,11 @@
             for (i = 0; i < arr.length; i++) {
                 for (j = i + 1; j < arr.length; j++) {
                     if (arr[i] === arr[j]) {
-                        return "Exista un duplicate in acest array.";
+                        return true;
                     }
                 }
             }
-            return "Nu exista duplicate in acest array."
+            return false;
         }
         console.log(duplicateArr([1, 2, 3, 4, 5, 3]));
         console.log(duplicateArr([1, 2, 3, 4, 5, 6]));
@@ -227,15 +223,17 @@
         function strPalindrom(str) {
             for (i = 0; i < str.length / 2; i++) {
                 if (str[i] !== str[str.length - i - 1]) {
-                    return str + " is not a palindrom"
+                    return false;
                 }
             }
-            return str + " is a palindrom"
+            return true;
         }
         console.log(strPalindrom("abcba"));
         console.log(strPalindrom("abc"));
     </script>
 
 </body>
+
+
 
 </html>
