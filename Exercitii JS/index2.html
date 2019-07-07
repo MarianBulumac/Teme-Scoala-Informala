@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM manipulation</title>
+    <style>
+        .fancyP {
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+            border-style: dotted;
+            border-width: 10px;
+            border-color: darkred;
+        }
+    </style>
+    <script>
+        function pageLoaded() {
+            console.log("the page has loaded");
+        }
+
+        function clickMe() {
+
+            var inputName = document.getElementById("name");
+            var paragraf = document.getElementById("paragraf");
+
+            //inputName.value = "Hello " + inputName.value;
+            paragraf.innerHTML = "Hello " + inputName.value;
+            //paragraf.style.backgroundColor = "red";
+            paragraf.classList.add("fancyP");
+
+            console.log(paragraf.innerHTML);
+            console.log(paragraf.innerText);
+            document.querySelector("#name"); //selecteaza primul element
+            document.querySelectorAll("#name"); //selecteaza toate elementele sub forma de list array
+
+
+        }
+    </script>
+</head>
+
+<body onload="pageLoaded();">
+
+
+
+    <form action="">
+        <input id="name" type="text">
+
+
+
+    </form>
+
+    <button onclick="clickMe();">Click Me!</button>
+    <p id="paragraf" style="">
+        <span>Ana</span>
+        <span>Are</span>
+        <span>Mere</span>
+    </p>
+
+</body>
+
+</html>

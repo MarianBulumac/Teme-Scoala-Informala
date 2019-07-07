@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Exercitii JS</title>
+</head>
+
+<body>
+  <script>
+    /** 1.Write a JavaScript program to convert temperatures to and from Celsius, Fahrenheit.[ Formula : c/5 = (f-32)/9 [ where c = temperature in Celsius and f = temperature in Fahrenheit ]
+     */
+
+    //convert celsius to fahrenheit 
+
+    function convertF(n) {
+      var f = n * (9 / 5) + 32;
+      return f.toFixed(1);
+    }
+    console.log(convertF(30));
+
+    //convert fahrenheit to celsius
+
+    function convertC(n) {
+      var c = (n - 32) * 5 / 9;
+      return c.toFixed(1);
+    }
+    console.log(convertC(100));
+
+    /** 2. Write a JavaScript program to get the difference between a given number and 13, if the number is greater than 13 return double the absolute difference.
+     */
+
+    function something(n) {
+      var a;
+      if (n <= 13) {
+        a = 13 - n;
+        return a;
+      } else if (n >= 13) {
+        var b;
+        b = (n - 13) * 2;
+        return b;
+      }
+    }
+    console.log(something(11));
+    console.log(something(16));
+
+    /** 3. Write a JavaScript program to compute the sum of the two given integers. If the two values are same, then returns triple their sum.
+     */
+
+    function givenIntegers(x, y) {
+      if (x === y) {
+        return (x + y) * 3;
+      }
+    }
+    console.log(givenIntegers(2, 2));
+
+    /** 4. Write a JavaScript program to compute the absolute difference between a specified number and 19. Returns triple their absolute difference if the specified number is greater than 19.
+     */
+
+    function difference(n) {
+      if (n < 19) {
+        return 19 - n;
+      } else if (n >= 19) {
+        return (n - 19) * 3;
+      }
+    }
+    console.log(difference(20));
+
+    /** 5. Write a JavaScript program to check two given numbers and return true if one of the number is 50 or if their sum is 50.
+     */
+
+    function twoGivenNums(a, b) {
+      if (a === 50 || b === 50 || a + b === 50) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    console.log(twoGivenNums(25, 25));
+
+    /** 6. Write a JavaScript program to check from two given integers, if one is positive and one is negative.
+     */
+
+    function integersTwo(a, b) {
+      if ((a < 0 || b < 0) && (a > 0 || b > 0)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    console.log(integersTwo(1, 1));
+
+    /** 7. Write a JavaScript program to create a new string adding "Py" in front of a given string. If the given string begins with "Py" then return the original string.
+     */
+
+    function addingPy(str) {
+      if (str[0] === "P" && str[1] === "y") {
+        return str;
+      } else {
+        return "Py" + str;
+      }
+    }
+    console.log(addingPy("thon"));
+
+    /** 8. Write a JavaScript program check if a given positive number is a multiple of 3 or a multiple of 7.
+     */
+
+    function numberMultiple(n) {
+      if (n > 0 && (n % 3 === 0 || n % 7 === 0)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    console.log(numberMultiple(3));
+
+    /** 9. Write a JavaScript program to check if two given integer values are in the range 50..99 (inclusive). Return true if either of them are in the said range.
+     */
+
+    function valuesRange(x, y) {
+      if ((x >= 55 && x <= 99) || (y >= 55 && y <= 99)) {
+        return true;
+      }
+      return false;
+    }
+
+    console.log(valuesRange(999, 878));
+    console.log(valuesRange(40, 90));
+
+    /** 10. Write a JavaScript program to check if three given integer values are in the range 50..99 (inclusive). Return true if one or more of them are in the said range.
+     */
+
+    function valuesRange(x, y, z) {
+      if (
+        (x >= 55 && x <= 99) ||
+        (y >= 55 && y <= 99) ||
+        (z >= 55 && z <= 99)
+      ) {
+        return true;
+      }
+      return false;
+    }
+
+    console.log(valuesRange(999, 878, 42));
+    console.log(valuesRange(40, 90, 55));
+    console.log(valuesRange(40, 10, 15));
+
+    /** 11. Write a JavaScript program to find the largest of three given integers.
+     */
+
+    function largestInteger(a, b, c) {
+      if (a > b && a > c) {
+        return a;
+      } else if (b > a && b > c) {
+        return b;
+      } else if (c > a && c > b) {
+        return c;
+      } else {
+        return a || b || c;
+      }
+    }
+
+    console.log(largestInteger(100, 19, 3));
+    console.log(largestInteger(100, 200, 3));
+    console.log(largestInteger(100, 19, 300));
+    console.log(largestInteger(1000, 1000, 1000));
+
+    /** 12. Write a JavaScript program to find a value which is nearest to 100 from two different given integer values.
+     */
+
+    function nearest(x, y) {
+      var a = 100 - x;
+      var b = 100 - y;
+      if (a < b) {
+        return x;
+      } else if (b < a) {
+        return y;
+      }
+    }
+    console.log(nearest(98, 101));
+
+    /** 13. Write a JavaScript program to check if the last digit of the three given positive integers is same.
+     */
+
+    function lastDigit(a, b, c) {
+      if (a > 0 && b > 0 && c > 0) {
+        if (a % 10 === b % 10 && a % 10 === c % 10 && b % 10 === c % 10) {
+          return true;
+        }
+      }
+      return false;
+    }
+    console.log(lastDigit(12, 22, 22));
+
+    /** 14. Write a JS program to check if a number is multiple of 7 or the sum of the digits is multiple of 7
+     */
+
+    function multipleOfSeven(n) {
+      var sum = 0;
+      for (i = 0; i <= n; i++) {
+        sum += i % 10;
+      }
+      if (n % 7 === 0 || sum % 7 === 0) {
+        return true;
+      }
+
+      return false;
+    }
+    console.log(multipleOfSeven(52));
+
+    /** 15. Write a JavaScript program to capitalize the first letter of each word of a given string.
+     */
+
+    function firstWordCapitalize(str) {
+      var a = "";
+      for (i = 0; i < str.length; i++) {
+        a += str[i];
+        if (str[i] === " ") {
+          i++;
+          var uC = str[i].toUpperCase();
+          a += uC;
+        }
+      }
+      return a.charAt(0).toUpperCase() + a.slice(1);
+    }
+    console.log(firstWordCapitalize("ana are mere si pere"));
+
+    /** 16. Write a JavaScript program to convert a given number of seconds to hours, minutes and seconds.
+     */
+
+    function convertNumber(n) {
+      var h = Math.floor(n / 60);
+      var m = n % 60;
+      var s = n % 60;
+
+      return h + ":" + m + ":" + s;
+    }
+    console.log(convertNumber(1001));
+
+    /** 17. Return any given number translated in a string words.
+     */
+
+    function numberInWords(n) {
+      var a = "";
+      var count = 0;
+      for (i = n.length - 1; i >= 0; i--) {
+        count++;
+        if (count > 0 && count % 3 === 0) {
+          a = "," + n[i] + a;
+        } else {
+          a = n[i] + a;
+        }
+      }
+      return a;
+    }
+
+    console.log(numberInWords("1234567894"));
+
+    /** 18. Move the comma with 3 elements.
+     */
+
+    function moveComma(str) {
+      var space = "";
+      for (i = 0; i < str.length; i++) {
+        if (i > 0 && i % 4 === 0) {
+          space += " " + str[i];
+        } else {
+          space += str[i];
+        }
+      }
+      return space;
+    }
+
+    console.log(moveComma("123456781234"));
+
+    // function isPrime(n){
+    //     for(var i = 2; i<n; i++){
+    //         if( n % i === 0){
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+
+    // console.log(isPrime(10));
+    // console.log(isPrime(3));
+
+
+
+    // function numararray(arr,n){
+    //     for(i=0; i<arr.length; i++){
+    //         if(n===arr[i]){
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
+
+    // console.log(numararray([1,2,3],4));
+  </script>
+</body>
+
+</html>

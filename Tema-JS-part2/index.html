@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      /** 1. O functie care primeste un sir de caractere si returneaza cifrele din sirul respectiv
+       */
+      function returnNums(str) {
+        var nums = "";
+        for (i = 0; i < str.length; i++) {
+          if (!isNaN(parseInt(str[i]))) {
+            nums = nums + str[i];
+          }
+        }
+        return nums;
+      }
+
+      console.log(returnNums("1h12h3h45h"));
+
+      /** 2. O functie care primeste un sir de caractere si returneaza doar literele din sirul respectiv
+       */
+      function returnLetters(str) {
+        var letters = "";
+        for (i = 0; i < str.length; i++) {
+          if (isNaN(parseInt(str[i]))) {
+            letters += str[i];
+          }
+        }
+        return letters;
+      }
+
+      console.log(returnLetters("6d76d78d7d6"));
+
+      /** 3. O functie care primeste un sir de caractere si returneaza primele 5 litere(daca exista)
+       */
+      function listaCaractere(str) {
+        var lit = "";
+        var i = 0;
+        while (lit.length < 5) {
+          if (!str[i]) {
+            break;
+          }
+          if (isNaN(parseInt(str[i]))) {
+            lit += str[i];
+          }
+          i++;
+        }
+        return lit;
+      }
+      console.log(listaCaractere("4567tyuk789"));
+
+      /** 4. O functie care primeste o lista de siruri de caractere si returneaza sirurile concatenate
+       */
+
+      function arrConcat(arr) {
+        var con = "";
+        for (i = 0; i < arr.length; i++) {
+          con += arr[i];
+        }
+        return con;
+      }
+      console.log(arrConcat(["Numele", "meu", "este", "Marian"]));
+
+      /** 5. O functie care primeste o lista de siruri de caractere si returneaza cifrele din toate sirurile
+       */
+
+      function arrNums(arr) {
+        var nums = "";
+        for (i = 0; i < arr.length; i++) {
+          for (j = 0; j < arr[i].length; j++) {
+            if (!isNaN(parseInt(arr[i][j]))) {
+              nums += arr[i][j];
+            }
+          }
+        }
+        return nums;
+      }
+      console.log(arrNums(["1jk22", "uhuh7777"]));
+
+      /** 6. O functie care primeste o lista de siruri de caractere si returneaza lista de siruri de caractere inversate
+       */
+      function charInvers(arr) {
+        var arrInvers = [];
+        for (i = 0; i < arr.length; i++) {
+          var str = "";
+          for (j = arr[i].length - 1; j >= 0; j--) {
+            str += arr[i][j];
+          }
+          arrInvers.push(str);
+        }
+        return arrInvers;
+      }
+      console.log(charInvers(["abc", "abc", "abc"]));
+
+      /** 7. Calculeaza factorialul unui numar
+       */
+
+      function numFactorial(n) {
+        var fact = 1;
+        for (i = 1; i <= n; i++) {
+          fact = fact * i;
+        }
+        return fact;
+      }
+      console.log(numFactorial(4));
+
+      /** 8. Calculeaza cel mai mare divizor comun al 2 numere
+       */
+      function mareDivizor(a, b) {
+        if (b < a) {
+          var aux = a;
+          a = b;
+          b = aux;
+        }
+        for (let i = a; i > 0; i--) {
+          if (a % i === 0 && b % i === 0) {
+            return i;
+          }
+        }
+      }
+
+      console.log(mareDivizor(44, 12));
+
+      /** 9. Calculeaza cel mai mic multiplu comun al 2 numere
+       */
+
+      function multipluComun(a, b) {
+        if (b < a) {
+          var aux = a;
+          a = b;
+          b = aux;
+        }
+        for (let i = b; ; i++) {
+          if (i % b === 0 && i % a === 0) {
+            return i;
+          }
+        }
+      }
+
+      console.log(multipluComun(3, 4));
+      /** 10.  Returneaza un array care sa contina toti divizorii unui numar (ex pentru 64: trebuie sa returneze [2,4,8,16,32])
+       */
+
+      function divizoriiUnuiNumar(n) {
+        var arr = [];
+        for (i = 2; i < n; i++) {
+          if (n % i === 0) {
+            arr.push(i);
+          }
+        }
+        return arr;
+      }
+      console.log(divizoriiUnuiNumar(64));
+
+      /** 11. O functie care verifica daca un numar este palindrom (ex: 121, 1234321)
+       */
+
+      function numarPalindrom(n) {}
+    </script>
+  </body>
+</html>
