@@ -161,7 +161,58 @@
       /** 11. O functie care verifica daca un numar este palindrom (ex: 121, 1234321)
        */
 
-      function numarPalindrom(n) {}
+      function numarPalindrom(n) {
+        n += "";
+        for (i = 0; i < n.length / 2; i++) {
+          if (n[i] !== n[n.length - i - 1]) {
+            return false;
+          }
+        }
+        return true;
+      }
+      console.log(numarPalindrom(1234321));
+      console.log(numarPalindrom(123456));
+
+      /** 12. O functie care sorteaza numerele pare dintr-un sir de numere primit ca parametru.
+       */
+
+      function sortNums(n) {
+        n += "";
+        var pare = [];
+        for (i = 0; i < n.length; i++) {
+          if (parseInt(n[i]) % 2 === 0) {
+            pare.push(parseInt(n[i]));
+          }
+        }
+        pare.sort(function(a, b) {
+          return a - b;
+        });
+        return pare;
+      }
+
+      console.log(sortNums(1234567890));
+
+      /** 13. O functie care primeste ca parametru un array de numere. Aceasta sorteaza ascendent numerele pare si descendent numerele impare, in cadrul aceluiasi array primit ca parameru.
+       */
+
+      function ascendentDesc(array) {
+        const oddArr = [];
+        const evenArr = [];
+        const result = [];
+        for (let i = 0; i < array.length; i += 1) {
+          if (array[i] % 2 === 0) {
+            evenArr.push(array[i]);
+          } else {
+            oddArr.push(array[i]);
+          }
+        }
+        oddArr.sort((a, b) => b - a);
+        evenArr.sort((a, b) => a - b);
+
+        return evenArr.concat(oddArr);
+      }
+
+      console.log(ascendentDesc([1, 80, 5, 4, 30, 3, 2]));
     </script>
   </body>
 </html>
