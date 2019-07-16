@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tabs</title>
+    <script>
+      function changeTab(tabNr) {
+        var pagetoBeActive = document.querySelector(
+          "section.page:nth-of-type(" + (tabNr + 1) + ")"
+        );
+        var pagetoBeActive = document.querySelectorAll("section.page")[tabNr];
+
+        var pageThatWwasActive = document.querySelector(
+          "section.page:not(.hidden)"
+        );
+        var tabToBeActive = document.querySelectorAll("button.tab")[tabNr];
+        var tabThatWasActive = document.querySelector("button.tab.active");
+
+        pageThatWasActive.classList.add("hidden");
+        pageToBeActive.classList.remove("hidden");
+
+        tabThatWasActive.classList.remove("active");
+        tabToBeActive.classList.add("active");
+      }
+    </script>
+    <style>
+      .hidden {
+        display: none;
+      }
+      .active {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button class="tab active" onclick="changeTab(0)">Tab1</button>
+      <button class="tab" onclick="changeTab(1)">Tab2</button>
+      <button class="tab" onclick="changeTab(2)">Tab3</button>
+      <button class="tab" onclick="changeTab(3)">Tab4</button>
+      <button class="tab" onclick="changeTab(4)">Tab5</button>
+    </div>
+    <div>
+      <section class="page">Content for Tab1</section>
+      <section class="page hidden">Content for Tab2</section>
+      <section class="page hidden">Content for Tab3</section>
+      <section class="page hidden">Content for Tab4</section>
+      <section class="page hidden">Content for Tab5</section>
+    </div>
+  </body>
+</html>

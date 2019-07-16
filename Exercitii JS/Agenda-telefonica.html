@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Agenda Telefonica</title>
+    <script>
+      var idxEditare = -1;
+      var lista = [];
+      function draw() {
+        //functia care imi actualizeaza tabelul (interfata) ori de cate ori se modifica lista mea de persoanele
+        //cu ${variabila}, inserez valoarea variabilei in templateul meu de html
+        //parcurg lista si pentru fiecare element al listei creez cate o bucatica de html
+        var str = "";
+        for (var i = 0; i < lista.length; i++) {
+          str += `<tr>
+      			<td>${lista[i].nume}</td>
+      			<td>${lista[i].prenume}</td>
+      			<td>${lista[i].varsta}</td>
+      			<td>${lista[i].telefon}</td>
+      			<td>
+      				<input class="del" type="button" value="Del" onclick="sterge(${i});" />
+      				<input class="edit" type="button" value="Edit" onclick="editeaza(${i});" />
+      			</td>
+      		</tr>`;
+          /*str+="<tr>"+
+      			"<td>"+lista[i].nume+"</td>"+
+      			"<td>"+lista[i].prenume+"</td>"+
+      			"<td>"+lista[i].varsta+"</td>"+
+      			"<td>"+lista[i].telefon+"</td>"+
+      		"</tr>";*/
+        }
+        //console.log(str);
+        document.querySelector("#tabel tbody").innerHTML = str;
+      }
+      function sterge(aaa) {
+        if (
+          confirm(
+            `Esti sigur ca vrei sa stergi inregistrarea ${lista[aaa].nume} ?`
+          )
+        ) {
+          lista.splice(aaa, 1);
+          draw();
+        }
+      }
+      function editeaza(idx) {
+        //salvez indexul elementului din lista in variabila globala
+        //ca sa stiu daca trebuie sa adaug la sfarsit sau sa modific
+        window.idxEditare = idx;
+        afiseazaFormular();
+        var obj = lista[idx];
+        var form = document.querySelector("#add-form");
+
+        form.querySelector("[name='nume']").value = obj.nume;
+        form.querySelector("[name='telefon']").value = obj.telefon;
+      }
+      function afiseazaTabel() {
+        // afisez tabelul
+
+        document.querySelector("#table-view").classList.remove("hidden");
+      }
+      function adauga(form, event) {
+        event.preventDefault();
+        var obj = {};
+        obj.nume = form.querySelector("[name='nume']").value;
+
+        obj.telefon = form.querySelector("[name='telefon']").value;
+
+        //daca index editare e -1 inseamna ca nu editez nimic, ci adaug ceva nou (la sfarsit)
+        if (idxEditare === -1) {
+          //cand este idxEditare -1 atunci inseamna ca adaug
+          lista.push(obj);
+        } else {
+          //cand este idxEditare diferit de -1 atunci inseamna ca editez pozitia idxEditare
+          lista[idxEditare] = obj;
+          //resetam idxEditare in -1 pentru ca am terminat cu editarea
+          idxEditare = -1;
+        }
+
+        draw();
+        afiseazaTabel();
+      }
+    </script>
+    <style>
+      .body,
+      html {
+        background-color: #fef8e1;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        font-weight: px;
+      }
+      #main {
+        text-align: center;
+        height: 100px;
+        width: auto;
+        background-color: #ffca28;
+        margin: 20px;
+        padding: 20px;
+      }
+      #submitButton {
+        margin-top: 20px;
+      }
+      #submitStyle {
+        background-color: blue;
+        color: white;
+        padding: 8px;
+        border-radius: 10px;
+      }
+      input[type="text"],
+      input[type="number"] {
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Agenda</h1>
+    <div id="main">
+      <div>
+        <form id="add-form" onsubmit="adauga(this,event)" action="">
+          <label for="">Nume: <input type="text" name="nume"/></label>
+          <label for="">Telefon: <input type="number" name="telefon"/></label>
+
+          <div id="submitButton">
+            <input id="submitStyle" type="submit" value="ADAUGA CONTACT" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tema DOM</title>
+    <script>
+      function preventD(event) {
+        event.preventDefault();
+      }
+
+      function val1(formular, event) {
+        event.preventDefault();
+        var input1 = formular.querySelector("[name='input1']");
+        var input2 = formular.querySelector("[name='input2']");
+
+        if (input1.value === input2.value) {
+          input1.classList.add("green-background");
+          input2.classList.add("green-background");
+        } else {
+          input1.classList.remove("green-background");
+          input2.classList.remove("green-background");
+        }
+      }
+
+      function val2(formular, event) {
+        event.preventDefault();
+        var input1 = formular.querySelector("[name='input3']");
+        var input2 = formular.querySelector("[name='input4']");
+
+        if (isNaN(input1.value) || isNaN(input2.value)) {
+          input1.classList.remove("green-background");
+          input2.classList.remove("green-background");
+        } else if (parseInt(input1.value) > parseInt(input2.value)) {
+          input1.classList.add("green-background");
+          input2.classList.remove("green-background");
+        } else if (parseInt(input1.value) < parseInt(input2.value)) {
+          input1.classList.remove("green-background");
+          input2.classList.add("green-background");
+        } else {
+          input1.classList.add("green-background");
+          input2.classList.add("green-background");
+        }
+      }
+
+      function val3(formular, event) {
+        event.preventDefault();
+        var input1 = formular.querySelector("[name='input5']");
+        var input2 = formular.querySelector("[name='input6']");
+        var input3 = formular.querySelector("[name='input7']");
+
+        if (
+          isNaN(input1.value) ||
+          isNaN(input2.value) ||
+          input1.value === "" ||
+          input2.value === ""
+        ) {
+          input3.value = "introduceti doua numere";
+        } else if (parseInt(input1.value) > parseInt(input2.value)) {
+          input3.value = input1.value;
+        } else if (parseInt(input1.value) < parseInt(input2.value)) {
+          input3.value = input2.value;
+        } else {
+          input3.value = "input1 este egal cu input2";
+        }
+      }
+
+      function val4(formular, event) {
+        event.preventDefault();
+        var input1 = formular.querySelector("[name='input8']");
+        var input2 = formular.querySelector("[name='input9']");
+        var input3 = formular.querySelector("[name='input10']");
+
+        if (
+          isNaN(input1.value) ||
+          isNaN(input2.value) ||
+          input1.value === "" ||
+          input2.value === ""
+        ) {
+          input3.value = "introduceti doua numere";
+        } else {
+          input3.value = parseInt(input1.value) + parseInt(input2.value);
+        }
+      }
+
+      function exercitiu5() {
+        var input1 = document.querySelector("[name='input11']").value;
+        document.querySelector("#text-length").innerHTML =
+          input1.length + " characters";
+      }
+
+      function exercitiu6(event) {
+        var input1 = document.querySelector("[name='input12']");
+        document.querySelector("#text-length1").innerHTML =
+          input1.value.length + " characters";
+
+        input1.onkeypress = function(event) {
+          if (input1.value.length >= 10) {
+            event.preventDefault();
+            document.querySelector("#text-length1").classList.add("red-color");
+          } else if (input1.value.length < 10) {
+            document
+              .querySelector("#text-length1")
+              .classList.remove("red-color");
+          }
+        };
+      }
+
+      function exercitiu7(event) {
+        if (
+          (event.keyCode < 47 || event.keyCode > 58) &&
+          event.keyCode !== 08
+        ) {
+          event.preventDefault();
+        }
+      }
+    </script>
+    <style>
+      h1 {
+        text-align: center;
+      }
+
+      .form {
+        width: 35%;
+        margin: 30px auto;
+        background-color: #ccc;
+        border-radius: 10px;
+        border: 1px solid #111;
+        font-family: "Times New Roman", Times, serif;
+        text-align: center;
+        box-shadow: 10px 15px lightslategray;
+      }
+
+      .form .container-input {
+        margin: 30px 0;
+      }
+
+      .container-input {
+        background-color: #ffca28;
+        padding: 10px 10px;
+        border-radius: 10px;
+        box-shadow: 5px 10px lightslategray;
+        border: 2px solid blue;
+        color: blue;
+      }
+
+      .form legend {
+        font-size: 14px;
+        background-color: #eee;
+        border-radius: 10px;
+        border: 2px solid blue;
+        box-shadow: 5px 10px lightslategray;
+      }
+
+      .form input {
+        margin: 3px 10px;
+      }
+
+      .green-background {
+        background-color: #8bc34a;
+      }
+
+      .red-color {
+        color: red;
+        border: 2px solid red;
+      }
+
+      #text-length,
+      #text-length1 {
+        min-width: 10px;
+        float: right;
+      }
+
+      input[type="submit"] {
+        background-color: blue;
+        padding: 10px 30px;
+        border-radius: 10px 30px;
+        color: white;
+        box-shadow: 3px 7px lightslategray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tema DOM: validare formular.</h1>
+    <form onsubmit="preventD(event);">
+      <fieldset class="form">
+        <legend>
+          Construiti in HTML si CSS un formular care sa contina 3 Input type
+          text, 2 Selecturi 3 Checkboxuri, 3 Radio Buttons si un Submit.
+        </legend>
+        <div class="container-input">
+          <label
+            >Input 1:<input
+              type="text"
+              name=""
+              placeholder="Introdu aici..."/></label
+          ><br />
+          <label
+            >Input 2:<input
+              type="text"
+              name=""
+              placeholder="Introdu aici..."/></label
+          ><br />
+          <label
+            >Input 3:<input
+              type="text"
+              name=""
+              placeholder="Introdu aici..."/></label
+          ><br />
+        </div>
+        <div class="container-input">
+          <select class="" name="">
+            <option value="">Alege...</option>
+            <option value="">Optiunea 1</option>
+            <option value="">Optiunea 2</option>
+          </select>
+          <select class="" name="">
+            <option value="">Alege...</option>
+            <option value="">Optiunea 1</option>
+            <option value="">Optiunea 2</option>
+          </select>
+        </div>
+        <div class="container-input">
+          <label>Checkbox 1 <input type="checkbox"/></label><br />
+          <label>Checkbox 2 <input type="checkbox"/></label><br />
+          <label>Checkbox 3 <input type="checkbox"/></label><br />
+        </div>
+        <div class="container-input">
+          <label>Radio 1<input type="radio" name="radio" value=""/></label>
+          <label>Radio 2<input type="radio" name="radio" value=""/></label>
+          <label>Radio 3<input type="radio" name="radio" value=""/></label>
+        </div>
+        <div class="container-input">
+          <input type="submit" name="" value="Submit" />
+        </div>
+      </fieldset>
+    </form>
+    <form action="" onsubmit="val1(this,event)">
+      <fieldset class="form">
+        <legend>
+          1. Pastrati doar 2 inputuri si colorati ambele inputuri verzi daca
+          valoarea din casuta 1 si din casuta 2 sunt egale.
+        </legend>
+        <div class="container-input">
+          <label
+            >Input 1:<input
+              type="text"
+              name="input1"
+              placeholder="Introdu aici..."/></label
+          ><br />
+          <label
+            >Input 2:<input
+              type="text"
+              name="input2"
+              placeholder="Introdu aici..."/></label
+          ><br />
+        </div>
+        <div class="container-input">
+          <input type="submit" name="" value="Submit" />
+        </div>
+      </fieldset>
+    </form>
+    <form action="" onsubmit="val2(this,event)">
+      <fieldset class="form">
+        <legend>
+          2. Pastrati doar 2 inputuri si colorati inputul care are valoarea mai
+          mare. Daca sunt egale, colorati-le pe ambele.
+        </legend>
+        <div class="container-input">
+          <label
+            >Input 1:<input
+              type="text"
+              name="input3"
+              placeholder="Introdu aici..."/></label
+          ><br />
+          <label
+            >Input 2:<input
+              type="text"
+              name="input4"
+              placeholder="Introdu aici..."/></label
+          ><br />
+        </div>
+        <div class="container-input">
+          <input type="submit" name="" value="Submit" />
+        </div>
+      </fieldset>
+    </form>
+    <form action="" onsubmit="val3(this,event)">
+      <fieldset class="form">
+        <legend>
+          3. Pastrati doar 3 inputuri si afisati in al 3-lea input valoarea
+          inputului mai mare dintre primul si al doilea.
+        </legend>
+        <div class="container-input">
+          <label
+            >Valoare 1:<input
+              type="text"
+              name="input5"
+              placeholder="Introdu aici..."/></label
+          ><br />
+          <label
+            >Valoare 2:<input
+              type="text"
+              name="input6"
+              placeholder="Introdu aici..."/></label
+          ><br />
+          <label
+            >Rezulta: <input type="text" name="input7" placeholder=""/></label
+          ><br />
+        </div>
+        <div class="container-input">
+          <input type="submit" name="" value="Submit" />
+        </div>
+      </fieldset>
+    </form>
+    <form action="" onsubmit="val4(this,event)">
+      <fieldset class="form">
+        <legend>
+          4. Pastrati doar 3 inputuri si afisati in al 3-lea input suma primului
+          + celui de-al 2-lea input.
+        </legend>
+        <div class="container-input">
+          <label
+            >Valoare 1:<input
+              type="text"
+              name="input8"
+              placeholder="Introdu aici..."
+              onkeyup="exercitiu4()"/></label
+          ><br />
+          <label
+            >Valoare 2:<input
+              type="text"
+              name="input9"
+              placeholder="Introdu aici..."
+              onkeyup="exercitiu4()"/></label
+          ><br />
+          <label
+            >Rezulta: <input type="text" name="input10" placeholder=""/></label
+          ><br />
+        </div>
+        <div class="container-input">
+          <input type="submit" name="" value="Submit" />
+        </div>
+      </fieldset>
+    </form>
+    <fieldset class="form">
+      <legend>
+        5. Pastrati doar 1 input si afisati intr-un span/div in coltul dreapta
+        jos, lungimea sirului de caractere tastat.
+      </legend>
+      <div class="container-input">
+        <label
+          >Input 1:<input
+            type="text"
+            name="input11"
+            placeholder="Introdu aici..."
+            onkeyup="exercitiu5()"/></label
+        ><br />
+      </div>
+      <div id="text-length" class="container-input">0 caractere</div>
+    </fieldset>
+
+    <fieldset class="form">
+      <legend>
+        6. Plecand de la ex 5, limitati numarul de caractere la 10. In momentul
+        in care am ajuns la 10, inrositi counterul si folosind
+        event.preventDefault() pe evenimentul onkeypress opriti utilizatorul sa
+        mai introduca caractere in plus.
+      </legend>
+      <div class="container-input">
+        <label
+          >Input 1<input
+            type="text"
+            name="input12"
+            placeholder="Introdu aici..."
+            onkeyup="exercitiu6(event)"/></label
+        ><br />
+      </div>
+      <div id="text-length1" class="container-input">0 caractere</div>
+    </fieldset>
+
+    <fieldset class="form">
+      <legend>
+        7. Pastrati doar 1 input si folosind event.preventDefault pe evenimentul
+        onkeypress, opriti utilizatorul sa mai introduca orice altceva decat
+        numere.
+      </legend>
+      <div class="container-input">
+        <label
+          >Input 1<input
+            type="text"
+            name="input12"
+            placeholder="Introdu aici..."
+            onkeydown="exercitiu7(event)"/></label
+        ><br />
+      </div>
+    </fieldset>
+  </body>
+</html>
