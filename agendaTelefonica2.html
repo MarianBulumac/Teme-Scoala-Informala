@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Agenda Telefonica</title>
+    <style>
+      body,
+      html {
+        background-color: #fef8e1;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      h1 {
+        text-align: center;
+      }
+      .main{
+        text-align: center;
+        background-color: #ffca28;
+        width: 700px;
+        padding: 20px;
+        margin: auto;
+      }
+      .listare{
+        text-align: center;
+        background-color: #ffca28;
+        width: 700px;
+        padding: 20px;
+        margin: auto;
+        margin-top: 20px;
+      }
+    
+      #adaugaContactDiv {
+        margin-top: 20px;
+      }
+      #butonAdaugaContact {
+        background-color: blue;
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      #butonAdaugaContact:hover{
+          background-color:#313179;
+          cursor: pointer;
+      }
+      input[type="text"],
+      input[type="number"] {
+        border-radius: 7px;
+        padding: 7px;
+        margin: 5px;
+      }
+      .hidden{
+          display: none;
+      }
+      .editeaza,.sterge{
+          margin:2px;
+          border-radius: 5px;
+          cursor: pointer;
+          background-color: blue;
+          color: white;
+      }
+      .editeaza:hover{
+background-color: greenyellow;
+color: black;
+      }
+      .sterge:hover{
+          background-color: red;
+          color:white;
+      }
+      table{
+          margin:auto;
+          width: 100%;
+      }
+    
+    </style>
+    <script>
+
+        var idxEditare=-1;
+      var lista = [];
+
+      function adauga(form, event) {
+        event.preventDefault();
+        var obj = {};
+        obj.nume = form.querySelector("[name='nume']").value;
+        obj.telefon = form.querySelector("[name='telefon']").value;
+       if(idxEditare===-1){
+           lista.push(obj);
+       }else{
+           lista[idxEditare]=obj;
+           idxEditare=-1;
+       }
+       draw();
+       //form.reset();
+       afiseazaTabel();
+      }
+      function afiseazaTabel() {
+        document.querySelector("#rezultat").classList.remove("hidden");
+      }
+      function draw() {
+        var str = "";
+        for (i = 0; i < lista.length; i++) {
+          str += `<tr>
+            <td>${lista[i].nume}</td>
+            <td>${lista[i].telefon}</td>
+            <td><input class="editeaza" type="button" onclick="editeaza(${i});" value="Editeaza">
+                <input class="sterge" type="button" onclick="sterge(${i});" value="Sterge">
+            </tr>
+    
+    `;
+        }
+        document.querySelector("#rezultat tbody").innerHTML = str;
+      }
+
+      function sterge(a){
+          lista.splice(a,1);
+          draw();
+      }
+
+      function editeaza(idx){
+          window.idxEditare=idx;
+          var obj = lista[idx];
+          var form = document.querySelector("add-form");
+          form.querySelector("[name='nume']").value=obj.nume;
+          form.querySelector("[name='telefon']").value=obj.telefon;
+
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Agenda Telefonica</h1>
+    <div class="main">
+      <div>
+        <form id = "add-form" onsubmit="adauga(this,event)" action="">
+          <label for="">Nume:<input type="text" name="nume"/></label>
+          <label for=""
+            >Numar telefon:<input type="number" name="telefon"/></label
+          ><br />
+          <div id="adaugaContactDiv">
+            <input
+              onclick="afiseazaTabel();"
+              id="butonAdaugaContact"
+              type="submit"
+              value="ADAUGA CONTACT"
+            />
+          </div>
+      </div>
+    </div>
+    <div class="listare hidden" id="rezultat">
+      <table id="">
+        <thead>
+          <tr>
+            <th>Nume</th>
+            <th>Numar telefon</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+</form>
+  </body>
+</html>

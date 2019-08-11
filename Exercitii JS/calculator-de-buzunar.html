@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Calculator</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 500px;
+        height: 500px;
+      }
+      table input {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td colspan="4">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        <td><input type="button" value="Del" onclick="addDigit(this)" /></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="7" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="8" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="9" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="/" onclick="addDigit(this)" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="4" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="5" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="6" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="*" onclick="addDigit(this)" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="1" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="2" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="3" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="-" onclick="addDigit(this)" /></td>
+      </tr>
+
+      <tr>
+        <td><input type="button" value="," onclick="addDigit(this)" /></td>
+        <td><input type="button" value="0" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="=" onclick="addDigit(this)" /></td>
+        <td><input type="button" value="+" onclick="addDigit(this)" /></td>
+      </tr>
+    </table>
+  </body>
+</html>

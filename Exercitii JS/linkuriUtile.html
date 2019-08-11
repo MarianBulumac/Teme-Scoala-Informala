@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Linkuri Utile</title>
+  </head>
+  <style>
+
+      table{
+          width: 100%;
+      }
+      .ascunde{
+          display: none;
+      }
+      .creier{
+          border-radius: 50%;
+          background-color: green;
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+      }
+      .spanStyle{
+          border: solid 1px black;
+          border-radius: 20px;
+          padding: 3px;
+      }
+  </style>
+  <script>
+      function draw(){
+          var str="";
+          for(i=0;i<arrayList.length;i++){
+              str+=` <tr>
+          <td><div class="creier"></div><a href="${arrayList[i].link}">${arrayList[i].name}</a></td>
+          <td>${arrayList[i].description}</td>
+          <td><span class="spanStyle">${arrayList[i].tags}</span></td>
+          <td><input type="button" value="Edit"></td>
+          <td><input type="button" value="Delete"></td>
+        </tr>
+      `
+          }
+          document.querySelector("tbody").innerHTML=str;
+      }
+      var arrayList =[{name:"test",
+                       link:"",
+                    description:"",
+                    tags:[""],
+                    complexity:""},
+             {name:"",
+                       link:"",
+                        description:"",
+                  tags:[""],
+            complexity:""},{name:"",
+                       link:"",
+                    description:"",
+                tags:[""],
+            complexity:""}];
+            function altaFunctie(event){
+                event.preventDefault();
+                arrayList.push({
+                    name:document.querySelector("#name").value,
+                link:document.querySelector("#link").value,
+                description:document.querySelector("#description").value,
+               tags:document.querySelector("#tags").value,
+                    complexity:document.querySelector("#complexity").value});
+                    draw();
+            };
+  </script>
+  <body onload="draw();">
+
+      <div class="Lista">
+    <input type="button" value="ADD" />
+    <table border="1">
+      <thead>
+          <tr>
+        <th>Nume</th>
+        <th>Descriere</th>
+        <th>Taguri</th>
+    </tr>
+      </thead>
+      <tbody>
+          <tr>
+          <td><div class="creier"></div><a href="http://www.google.ro">mnmdds</a></td>
+          <td>mdnsmsd</td>
+          <td><span class="spanStyle">dhdjdf</span><span class="spanStyle">jjhih</span></td>
+          <td><input type="button" value="Edit"></td>
+          <td><input type="button" value="Delete"></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<div class="ascund">
+    <form onsubmit="altaFunctie(event);" action="">
+<label class="formular">
+    <input type="button" value="ADD"><br>
+    <label>Name:</label><input id="name" type="text"></label><br>
+    <label>Link:</label><input id="link" type="text"></label><br>
+    <label>Description:<br><textarea name="" id="description" cols="30" rows="10"></textarea></label><br>
+    <label for="">Tags:<br><textarea name="" id="tags" cols="30" rows="10"></textarea></br></label>
+    <label for="">Complexity:<select id="complexity"><option value="">Basic</option><option>Medium</option><option value="">Advanced</option></select></label><br>
+    <input type="submit"  value="Add">
+    <input type="button" value="Cancel">
+</form>
+</div>
+  </body>
+</html>

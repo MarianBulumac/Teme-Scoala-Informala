@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>X si Zero</title>
+    <script>
+       var player = true;
+       var game = {[
+           [0,0,0],
+           [0,0,0],
+           [0,0,0]
+      ] }
+       function changeImg(img) {
+         if (img.src === "white.png") {
+           if (player === true) {
+             img.src = "x.png";
+           } else {
+             img.src = "zero.png";
+           }
+           player = !player;
+         }
+       }
+    </script>
+
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      table img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body onload="">
+    <table border="1">
+      <tr>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+      </tr>
+      <tr>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+      </tr>
+      <tr>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+        <td><img src="white.png" onclick="changeImg(this)" /></td>
+      </tr>
+    </table>
+  </body>
+</html>
