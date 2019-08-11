@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Shopping List</title>
+    <style>
+      body,
+      html {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(212, 66, 241);
+      }
+
+      .main {
+        width: 60%;
+        margin: auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+      }
+
+      .inside {
+        text-align: center;
+      }
+
+      .main input[type="submit"] {
+        background-color: #71fd95;
+        border-radius: 5px;
+        padding: 10px;
+      }
+
+      .main input[type="text"] {
+        padding: 10px;
+      }
+
+      .butoaneSortare {
+        background-color: #e19bfc;
+        border-radius: 5px;
+      }
+
+      .hidden {
+        display: none;
+      }
+      table {
+        margin-top: 30px;
+        width: 100%;
+        text-align: center;
+      }
+
+      td input[type="button"] {
+        background-color: #ff9797;
+        border-radius: 5px;
+      }
+      .taie {
+        text-decoration: line-through;
+      }
+    </style>
+    <script>
+      var idxEditare = -1;
+      var lista = [];
+
+      function draw() {
+        str = "";
+        for (i = 0; i < lista.length; i++) {
+          str += `  <tr>
+            <td class="${lista[i].marked === true ? "taie" : ""}">${
+            lista[i].produseIntroduse
+          }</td>
+            <td><input type="button" class="mark" value="Mark as buyed" onclick="strike(${i});"/></td>
+          </tr>
+                `;
+        }
+        document.querySelector("#afiseazaTabel tbody").innerHTML = str;
+      }
+
+      function adaugaProduse(form, event) {
+        event.preventDefault();
+        var obj = {};
+        obj.produseIntroduse = form.querySelector(
+          "[name='produseIntroduse']"
+        ).value;
+        if (idxEditare === -1) {
+          lista.push(obj);
+        } else {
+          lista[idxEditare] = obj;
+          idxEditare = -1;
+        }
+        draw();
+        document.querySelector("#addForm").reset();
+      }
+      function afiseazaT() {
+        document.querySelector("#afiseazaTabel").classList.remove("hidden");
+        draw();
+      }
+      function strike(i) {
+        lista[i].marked = true;
+        draw();
+      }
+      function sort(x) {
+        if (x === "az") {
+          lista.sort(function(a, b) {
+            var nameA = a.produseIntroduse.toUpperCase();
+            var nameB = b.produseIntroduse.toUpperCase();
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+
+            return 0;
+          });
+        } else {
+          lista.sort(function(a, b) {
+            var nameA = a.produseIntroduse.toUpperCase();
+            var nameB = b.produseIntroduse.toUpperCase();
+            if (nameA < nameB) {
+              return 1;
+            }
+            if (nameA > nameB) {
+              return -1;
+            }
+
+            return 0;
+          });
+        }
+        draw();
+      }
+    </script>
+  </head>
+
+  <body onload="draw()">
+    <div class="main">
+      <div class="inside">
+        <h2>SHOPPING LIST</h2>
+        <form onsubmit="adaugaProduse(this,event);" id="addForm">
+          <input type="text" name="produseIntroduse" />
+          <input type="submit" onclick="afiseazaT();" value="Add item" />
+        </form>
+        <br /><br />
+        <button class="butoaneSortare" onclick="sort('az');">Sort asc</button>
+        <button class="butoaneSortare" onclick="sort('za');">Sort desc</button>
+      </div>
+
+      <div class="hidden" id="afiseazaTabel">
+        <table>
+          <thead>
+            <tr>
+              <th>Item description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
