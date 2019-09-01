@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Meniu Restaurant</title>
+    
+    <script>
+      var list = [];
+
+      async function draw() {
+        var response = await fetch(
+          "https://restaurant-menu-acb9b.firebaseio.com/.json"
+        );
+        window.list = await response.json();
+        deseneaza();
+       
+      }
+     
+      function deseneaza(){
+        var search = document.querySelector("[name='cautare']").value;
+        var str = "";
+        console.log(search);
+        for (var i in list) {
+
+         
+
+          if(list[i].ingrediente.indexOf(search)!==-1){
+
+          
+          str += ` <div id="primaReteta">
+          <div>
+          <img
+            src="${list[i].imagine}"
+            alt=""
+          />
+        </div>
+        <div>
+          <h3>${list[i].nume}</h3>
+          <p>${list[i].ingrediente}</p>
+        </div>
+        <div>
+          <a href="detalii.html?id=${i}">
+          <input class="detaliiButton" type="button" value="Detalii" /></a>
+        </div>
+        </div>
+          `;
+          }
+        }
+        
+        document.querySelector("#lista-meniu").innerHTML = str;
+        
+      }
+      function searching(form,event){
+        event.preventDefault();
+       deseneaza();
+       form.reset();
+      } 
+      
+    </script>
+    <style>
+      #container {
+        margin: 0px 80px;
+        background: aquamarine;
+        padding: 40px;
+      }
+      div {
+        padding: 10px;
+      }
+      #contactButton input {
+        background-color: blue;
+        color: white;
+        float: right;
+      }
+      div img {
+        max-width: 200px;
+        max-height: 200px;
+      }
+      #primaReteta,
+      #aDouaReteta {
+        display: flex;
+      }
+      div .detaliiButton {
+        background-color:red;
+        color: white;
+      }
+    </style>
+
+  </head>
+  <body onload="draw();">
+    <div id="container">
+      <div id="title">
+        <h1>Cald si bun</h1>
+      </div>
+
+      <div id="contactButton">
+        <a href="contact.html"><input type="button" value="Contact" /></a>
+      </div>
+
+      <div>
+        <form action="" onsubmit="searching(this,event)">
+        <input class="cauta" oninput="deseneaza();" name="cautare" type="text" />
+        <input type="submit" value="Cauta in ingrediente" />
+      </form>
+      </div>
+
+
+    <div id="lista-meniu"></div>
+
+
+  </body>
+</html>

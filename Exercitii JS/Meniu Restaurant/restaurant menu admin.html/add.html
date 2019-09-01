@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Adauga reteta noua</title>
+  <script>
+    async function addR(event) {
+      event.preventDefault();
+      var obj = {
+        imagine: document.querySelector("[name='imagine']").value,
+        ingrediente: document.querySelector("[name='ingrediente']").value,
+        nume: document.querySelector("[name='nume']").value,
+        reteta: document.querySelector("[name='modPreparare']").value
+      }
+      var response = await fetch(`https://restaurant-menu-acb9b.firebaseio.com/.json`, {
+        method: "post",
+        body: JSON.stringify(obj)
+      });
+      location.href = "admin.html";
+    }
+  </script>
+  <style>
+    html,
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container-grid {
+      padding: 100px;
+    }
+
+    #container {
+      width: 60%;
+      margin: 0px auto;
+    }
+
+    input,
+    textarea {
+      width: 400px;
+    }
+
+    table {
+      width: 100%;
+
+    }
+
+    td {
+      height: 30px;
+      text-align: left;
+    }
+
+
+    .adaugaReteta {
+      background-color: #6796f9;
+      color: white;
+      float: right;
+      padding: 10px;
+      border-radius: 7px;
+      margin: 30px 40px 0px 0px;
+    }
+
+    span {
+      font-size: 40px;
+      margin: 30px 0px 0px 20px;
+      position: absolute;
+      color: #551a8c;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container" style="background-color: #baf3ed ; max-width:1000px;">
+    <span>Cald si bun (Admin)</span>
+
+    <div class="container-grid" id="formular">
+      <form onsubmit="addR(event)" action="">
+        <table>
+          <tr>
+            <td><label for="">Nume:</label></td>
+            <td><input type="text" name="nume" /></td>
+          </tr>
+          <tr>
+            <td><label for="">URL imagine:</label></td>
+            <td><input type="text" name="imagine" /></td>
+          </tr>
+          <tr>
+            <td><label for="">Ingrediente:</label></td>
+            <td><textarea name="ingrediente"></textarea></td>
+          </tr>
+          <tr>
+            <td><label for="">Mod de preparare:</label></td>
+            <td><textarea name="modPreparare"></textarea></td>
+          </tr>
+          <tr>
+            <td> <button type="onsubmit" class="adaugaReteta">Adauga preparat</button></a></td>
+          </tr>
+
+
+
+
+
+
+
+
+
+        </table>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

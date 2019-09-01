@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sterge Reteta</title>
+    <style>
+      html,
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .cald {
+        font-size: 40px;
+        margin: 30px 0px 0px 20px;
+        position: absolute;
+        color: #551a8c;
+        font-weight: bold;
+      }
+      .container-grid {
+        padding: 100px;
+      }
+      .da {
+        background-color: red;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+      }
+      .nu {
+        background-color: blue;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+      }
+    </style>
+    <script>
+      var list = [];
+
+      async function deseneaza() {
+        var i = window.location.search.substring(4);
+        var response = await fetch(
+          `https://restaurant-menu-acb9b.firebaseio.com/.json`
+        );
+        list = await response.json();
+        document.querySelector("[name='sp']").innerHTML = list[i].nume;
+      }
+      async function del() {
+        event.preventDefault();
+        var i = window.location.search.substring(4);
+        var response = await fetch(
+          `https://restaurant-menu-acb9b.firebaseio.com/${i}.json`,
+          {
+            method: "delete"
+          }
+        );
+        location.href = "admin.html";
+      }
+    </script>
+  </head>
+
+  <body onload="deseneaza();">
+    <div
+      style="background-color: rgb(129, 232, 222); max-width:1000px; margin: 0 auto;"
+    >
+      <h2 class="cald">Cald si bun (Admin)</h2>
+      <div class="container-grid">
+        <h2>Esti pe cale sa stergi preparatul:"<span name="sp"></span>".</h2>
+        <h2>Confirmi stergerea?</h2>
+        <button onclick="del();" class="da">DA</button>
+        <a href="admin.html"><button class="nu">NU</button></a>
+      </div>
+    </div>
+  </body>
+</html>
