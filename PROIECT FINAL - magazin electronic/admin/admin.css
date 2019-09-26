@@ -1,0 +1,66 @@
+.main {
+    width: 60%;
+    background-color: #ffb5b5;
+    margin: 0 auto;
+    padding: 30px;
+
+}
+
+
+input {
+    width: 600px;
+    height: 30px;
+    margin: 10px;
+
+
+}
+
+table {
+    width: 600px;
+    margin: 0 auto;
+
+}
+
+.butonSubmit {
+    text-align: center;
+}
+
+button {
+    background-color: #504658;
+    padding: 10px;
+    border-radius: 7px;
+    color: #f0decb;
+    margin: 5px;
+}
+
+.afisareLista {
+    margin-top: 30px;
+}
+
+.modificaButton {
+    background-color: #f0decb;
+    padding: 10px;
+    border-radius: 7px;
+    color: #504658;
+}
+
+.stergeButton {
+    background-color: red;
+    padding: 10px;
+    border-radius: 7px;
+    color: white;
+}
+
+td {
+    text-align: center;
+}
+
+h1 {
+    color: #ce2e6c;
+}
+
+.home a {
+    float: right;
+    color: #ce2e6c;
+    text-decoration: none;
+}

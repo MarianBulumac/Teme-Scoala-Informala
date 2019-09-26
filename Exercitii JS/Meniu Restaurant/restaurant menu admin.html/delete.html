@@ -46,7 +46,6 @@
         document.querySelector("[name='sp']").innerHTML = list[i].nume;
       }
       async function del() {
-        event.preventDefault();
         var i = window.location.search.substring(4);
         var response = await fetch(
           `https://restaurant-menu-acb9b.firebaseio.com/${i}.json`,

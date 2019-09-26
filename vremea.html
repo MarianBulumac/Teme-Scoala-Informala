@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #e3f2fd;
+      }
+
+      .search,
+      .vremeaAcum,
+      .prognozaMeteo {
+        margin: 30px;
+        background-color: white;
+        padding: 20px;
+      }
+      input[type="text"] {
+        width: 400px;
+        padding: 5px;
+        margin: 13px;
+      }
+      input[type="button"] {
+        background-color: #1e88e5;
+        color: white;
+        border-radius: 7px;
+        padding: 5px;
+        margin: 7px;
+      }
+    </style>
+    <script>
+      var stareaCurenta;
+
+      async function ajax() {
+        var oras = document.querySelector(".oras").value;
+        var response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?appid=69518b1f8f16c35f8705550dc4161056&units=metric&q=${oras}`
+        );
+        window.stareaCurenta = await response.json();
+        draw();
+      }
+
+      function draw() {
+        document.querySelector(".descriere").innerHTML =
+          stareaCurenta.weather[0].description;
+        document.querySelector(".umiditate").innerHTML =
+          stareaCurenta.main.humidity;
+        document.querySelector(".presiune").innerHTML =
+          stareaCurenta.main.pressure;
+        document.querySelector(".temp-curenta").innerHTML =
+          stareaCurenta.main.temp;
+        document.querySelector(".min-zilei").innerHTML =
+          stareaCurenta.main.temp_min;
+        document.querySelector(".max-zilei").innerHTML =
+          stareaCurenta.main.temp_max;
+document.querySelector(".harta").src=`https://www.google.com/maps/embed/v1/place?key=AIzaSyDd8I_yVKeCO3Nn7JAoxKXKdLdJcsIcF3I&q=${stareaCurenta.name}`;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="search">
+      <input type="text" class="oras" />
+      <input type="button" onclick="ajax()" value="Afiseaza vremea" />
+      <input type="button" value="Afiseaza prognoza" />
+    </div>
+    <div class="vremeaAcum">
+      <h2>Vremea acum</h2>
+      <hr />
+      <img src="" alt="" />
+      <p>Descriere: <span class="descriere"></span></p>
+      <p>Umiditate: <span class="umiditate"></span>%</p>
+      <p>Presiune: <span class="presiune"></span>hPa</p>
+      <p>Temperatura curenta: <span class="temp-curenta"></span></p>
+      <p>Minima zilei: <span class="min-zilei"></span></p>
+      <p>Maxima zilei: <span class="max-zilei"></span></p>
+     <iframe src="" class="harta" width="600"
+     height="450"
+     frameborder="0" style="border:0"></iframe>
+    <div class="prognozaMeteo">
+      <h2>Vremea in urmatoarele zile</h2>
+      <hr />
+      <div>
+        <img src="" alt="" />
+        <p>Ora:</p>
+        <p>Temperatura:</p>
+        <p>Descriere:</p>
+      </div>
+    </div>
+  </body>
+</html>
