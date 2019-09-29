@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+}
+
+.main {
+    width: 80%;
+    background-color: #ffb5b5;
+    margin: 0 auto;
+    padding: 30px;
+
+}
+
+.nav {
+    padding-bottom: 30px;
+}
+
+
+h1 {
+
+    color: #ce2e6c;
+}
+
+a {
+    text-decoration: none;
+}
+
+#shopButton {
+
+    background-color: #504658;
+    border-radius: 7px;
+    color: #f0decb;
+    padding: 10px;
+    float: right;
+
+}
+
+.adaugaButton {
+    background-color: #f0decb;
+    padding: 10px;
+    border-radius: 7px;
+    color: #504658;
+    margin-top: 40px;
+}
+
+.column {
+    float: left;
+    width: 40%;
+    padding: 10px;
+    position: relative;
+
+
+}
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

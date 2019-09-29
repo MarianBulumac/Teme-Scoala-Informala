@@ -34,8 +34,7 @@ async function addProdus(event) {
   };
 
   var response = await fetch(
-    "https://proiect-final-marian.firebaseio.com/produse.json",
-    {
+    "https://proiect-final-marian.firebaseio.com/produse.json", {
       method: "post",
       body: JSON.stringify(obj)
     }
@@ -47,11 +46,12 @@ async function addProdus(event) {
 
 async function sterge(event, i) {
   event.preventDefault();
-  var response = await fetch(
-    `https://proiect-final-marian.firebaseio.com/produse/${i}.json`,
-    {
-      method: "delete"
-    }
-  );
+  if (confirm("Esti sigur ca vrei sa stergi produsul?")) {
+    var response = await fetch(
+      `https://proiect-final-marian.firebaseio.com/produse/${i}.json`, {
+        method: "delete"
+      }
+    )
+  };
   draw();
 }
