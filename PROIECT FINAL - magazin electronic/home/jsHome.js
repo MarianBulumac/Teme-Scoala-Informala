@@ -19,7 +19,7 @@ async function draw() {
                             <span id="price">${list[i].pret}</span> 
                             <span>Lei</span>
                             <a href="../details/detalii.html?id=${i}">
-                                <button id="detailsBottom">Detalii</button>
+                                <button id="detailsButoane">Detalii</button>
                             </a>
                         </div>
                     </div>

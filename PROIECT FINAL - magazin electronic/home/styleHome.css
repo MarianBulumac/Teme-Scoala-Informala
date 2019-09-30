@@ -18,7 +18,7 @@
     height: 150px;
     border-radius: 50%;
     vertical-align: middle;
-    border: #504658 4px solid;
+    border: #ce2e6c 4px solid;
 }
 
 #showProducts {
@@ -99,22 +99,33 @@
 .backgroundWeb #showProducts .product #bottomBox {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
 }
 
-.backgroundWeb #showProducts .product #bottomBox #detailsBottom {
+.backgroundWeb #showProducts .product #bottomBox #detailsButoane {
     height: 35px;
     width: 100px;
     margin-bottom: 5px;
     border-radius: 5px;
     background-color: #f0decb;
     border: solid lightgrey 1px;
+    color: #504658;
+    padding: 3px;
 }
 
 .boxBorder {
-    border: solid lightgray 1px;
+    border: solid #f0decb 1px;
 }
 
 .fil0 {
     color: #504658;
+}
+
+
+a.carousel-control.right {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(206, 46, 108, 0.5) 100%);
+}
+
+a.carousel-control.left {
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0px, rgba(206, 46, 108, 0.5) 100%);
 }

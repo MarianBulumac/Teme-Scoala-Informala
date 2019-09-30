@@ -57,3 +57,20 @@ a {
     display: table;
     clear: both;
 }
+
+.logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: #ce2e6c 4px solid;
+    margin-bottom: 30px;
+}
+
+#title1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 30px;
+    margin: 5px;
+    font-size: 30px;
+    color: #ce2e6c;
+}

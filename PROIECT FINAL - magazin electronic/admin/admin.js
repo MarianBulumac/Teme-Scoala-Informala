@@ -53,5 +53,5 @@ async function sterge(event, i) {
       }
     )
   };
-  draw();
+  location.href = "admin.html";
 }
