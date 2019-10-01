@@ -6,6 +6,9 @@ async function draw() {
     window.list = await response.json();
     var str = "";
     for (var i in list) {
+        if (list[i] === null) {
+            continue;
+        }
         str += `
                 <div class="col-lg-3 col-sm-6 col-xs-12 product">
                     <div class="boxBorder">

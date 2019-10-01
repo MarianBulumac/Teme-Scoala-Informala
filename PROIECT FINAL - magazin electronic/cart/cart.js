@@ -1,17 +1,20 @@
 async function draw() {
-
+    var transport = 0;
     var total = 0;
+    var totalProduse = 0;
     var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos/.json`);
     window.list = await response.json();
     var str = "";
     for (var i in list) {
         if (list[i] === null) continue;
         total = total + list[i].cantitate * list[i].pret;
+        totalProduse = totalProduse + list[i].cantitate;
+        transport = transport + list[i].cantitate;
         str += ` 
                     <tr>
                    
-                        <th scope="row" name="nume"> <a href="detalii.html?id=${i}">${list[i].nume} </a></th>
-                  
+                        <th scope="row" name="nume"> <a href="../details/detalii.html?id=${i}">${list[i].nume} </a></th>
+                        <td name="imagine"><img style="width:100px; height=100px;" src="${list[i].imagine}" alt='' /></td>
                         <td name="pret">${list[i].pret}</td>
                         <td name="cantitate">
                             <input type="button" value="-" class="minus" onclick="decrease(event,'${i}')">
@@ -25,10 +28,10 @@ async function draw() {
     }
     document.querySelector("#showProducts table tbody").innerHTML = str;
 
-    document.querySelector("#products").innerHTML = Object.keys(list).length;
+    document.querySelector("#products").innerHTML = totalProduse;;
     document.querySelector("#totalPrice").innerHTML = total;
     document.querySelector("#tva").innerHTML = 19 / 100 * total;
-    document.querySelector("#transport").innerHTML = Object.keys(list).length * 5;
+    document.querySelector("#transport").innerHTML = transport * 5;
 
 }
 async function decrease(event, i) {

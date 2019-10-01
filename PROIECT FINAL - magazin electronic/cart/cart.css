@@ -35,6 +35,7 @@ html {
     padding: 10px;
     width: 200px;
     height: 60px;
+    display: none;
 }
 
 #toFirstPage {

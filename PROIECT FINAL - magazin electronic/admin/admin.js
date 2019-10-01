@@ -8,6 +8,9 @@ async function draw() {
 
   var str = "";
   for (var i in list) {
+    if (list[i] === null) {
+      continue;
+    }
     str += `
         <tbody>
         <tr>
@@ -49,9 +52,12 @@ async function sterge(event, i) {
   if (confirm("Esti sigur ca vrei sa stergi produsul?")) {
     var response = await fetch(
       `https://proiect-final-marian.firebaseio.com/produse/${i}.json`, {
+
         method: "delete"
       }
     )
+    draw();
   };
-  location.href = "admin.html";
+
+  // location.href = "admin.html";
 }

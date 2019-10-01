@@ -1,4 +1,4 @@
-var list = [];
+var produse = [];
 var i = window.location.search.substring(4);
 async function detalii() {
 
@@ -17,7 +17,7 @@ async function detalii() {
                    <p id="adaugaPret">Pret: ${produse.pret} RON</p>
                    <hr>
                    <p>In stoc: ${produse.stoc}</p>
-                   <label>Cantitate: </label><input type="number" name="cantitate" value="1" min="1" max="${produse.stoc}"style="width:50px"/>
+                   <label>Cantitate: </label><input type="number" id="cantitate" value="1" min="1" max="${produse.stoc}"style="width:50px"/>
                    
                    <div><button onclick="addCos(event,'${i}');" class="adaugaButton" type="button">ADAUGA IN COS</button></div>
                 </div>
@@ -28,52 +28,67 @@ async function detalii() {
 
 }
 
-async function addCos() {
-    var obj = {
-        nume: produse.nume,
-        pret: produse.pret,
-        stoc: produse.stoc,
-        cantitate: document.querySelector("[name='cantitate']").value
-    }
-    var response = await fetch(
-        `https://proiect-final-marian.firebaseio.com/cos/${i}.json`, {
+// async function addCos() {
+//     var obj = {
+//         imagine: produse.imagine,
+//         nume: produse.nume,
+//         pret: produse.pret,
+//         stoc: produse.stoc,
+//         cantitate: document.querySelector("#cantitate").value
+//     }
+//     var response = await fetch(
+//         `https://proiect-final-marian.firebaseio.com/cos/${i}.json`, {
+//             method: "put",
+//             body: JSON.stringify(obj)
+//         }
+//     );
+//     alert("Produsul a fost adaugat in cosul de cumparaturi");
+// }
+
+
+
+
+async function addCos(event, i) {
+
+    var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos/${i}.json`);
+    produseCos = await response.json();
+    var found = false;
+    var val = document.querySelector("#cantitate").value;
+    if (produseCos !== null) {
+        if (confirm("Produsul a mai fost adaugat in cos. Esti sigur ca vrei sa continui?")) {
+            if (parseInt(val) + parseInt(produseCos.cantitate) <= produse.stoc) {
+                produseCos.cantitate = parseInt(produseCos.cantitate) + parseInt(document.querySelector("#cantitate").value);
+                var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos/${i}/cantitate.json`, {
+                    method: "put",
+                    body: produseCos.cantitate
+
+
+                });
+            } else {
+                alert('Cantitatea selectata depaseste stocul existent!');
+            }
+
+        }
+
+
+    } else if (parseInt(val) <= produse.stoc) {
+        var obj = {
+            imagine: produse.imagine,
+            nume: produse.nume,
+            descriere: produse.descriere,
+            pret: produse.pret,
+            stoc: produse.stoc,
+            cantitate: document.querySelector("#cantitate").value
+
+        }
+        var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos/${i}.json`, {
             method: "put",
             body: JSON.stringify(obj)
-        }
-    );
-    alert("Produsul a fost adaugat in cosul de cumparaturi");
+
+        });
+        alert("Produsul a fost adaugat in cos")
+
+    } else {
+        alert('Cantitatea selectata depaseste stocul existent!');
+    }
 }
-
-// async function addCos(event, i) {
-//     event.preventDefault();
-//     var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos.json`);
-//     window.produseCos = await response.json();
-//     var found = false;
-//     var val = document.querySelector("['name='cantitate']").value;
-//     for (j in produseCos) {
-//         if (list[i].nume === produseCos[j].nume) {
-//             var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos/${j}/cantitate.json`, {
-//                 method: "put",
-//                 body: produseCos[j].cantitate + parseInt(val)
-//             });
-//             found = true;
-//         }
-//     }
-//     if (!found) {
-//         var obj = {
-//             imagine: list[i].imagine,
-//             nume: list[i].nume,
-//             pret: list[i].pret,
-//             cantitate: document.querySelector("[name='cantitate']").value,
-//             stoc: list[i].stoc
-//         }
-//         var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos.json`, {
-//             method: "post",
-//             body: JSON.stringify(obj)
-
-//         });
-//         alert("produsul a fost adaugat in cos")
-//     }
-
-
-// }
