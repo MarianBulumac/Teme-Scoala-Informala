@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        class Elev {
+            constructor(nume) {
+                this.nume = nume;
+                this.note = [];
+            }
+            medie() {
+                if (this.note.length === 0) {
+                    return "";
+                } else {
+                    var suma = 0;
+                    for (var i = 0; i < this.note.length; i++) {
+                        suma += this.note[i];
+                    }
+                    return suma / this.note.length;
+                }
+            }
+            addNota(nota) {
+                this.note.push(nota);
+            }
+        }
+        var listaElevi = [];
+        var indexElev = -1;
+        function sortAscM() {
+            listaElevi.sort(function (a, b) {
+                if (a.medie() > b.medie()) {
+                    return 1;
+                }
+                if (a.medie() < b.medie()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            })
+            drawElevi()
+        }
+        function sortDescM() {
+            listaElevi.sort(function (a, b) {
+                if (a.medie() > b.medie()) {
+                    return -1;
+                }
+                if (a.medie() < b.medie()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            })
+            drawElevi()
+        }
+        function sortAscN() {
+            listaElevi[indexElev].note.sort(function (a, b) {
+                if (a > b) {
+                    return 1;
+                }
+                if (a < b) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            })
+            drawNote()
+        }
+        function sortDescN() {
+            listaElevi[indexElev].note.sort(function (a, b) {
+                if (a > b) {
+                    return -1;
+                }
+                if (a < b) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            })
+            drawNote()
+        }
+        function adaugaElev(event) {
+            event.preventDefault();
+            var nume = document.querySelector("[name='nume']").value;
+            listaElevi.push(new Elev(nume));
+            drawElevi();
+            document.querySelector('#add-e').reset();
+        }
+        function drawElevi() {
+            var str = "";
+            for (var i = 0; i < listaElevi.length; i++) {
+                str += `
+                    <tr>
+                        <td>${listaElevi[i].nume}<td>
+                        <td>${listaElevi[i].medie()}<td>
+                        <td><input type="button" value="Afiseaza Notele" onclick="editeazaElev(${i});" /><td>
+                    <tr>
+                `;
+            }
+            document.querySelector("#tabelElevi tbody").innerHTML = str;
+        }
+        function drawNote() {
+            var elev = listaElevi[indexElev];
+            var note = elev.note;
+            var str = "";
+            for (var i = 0; i < note.length; i++) {
+                str += `
+                    <tr>
+                        
+                        <td>${note[i]}<td>
+                    </tr>`;
+            }
+            document.querySelector("#tabelNote tbody").innerHTML = str;
+        }
+        function editeazaElev(index) {
+            indexElev = index;
+            drawNote();
+            document.querySelector("[name='numeElev']").innerHTML=listaElevi[index].nume;
+            document.querySelector("#adaugareNote").classList.remove("hidden");
+        }
+        function ascundeNote(){
+            document.querySelector("#adaugareNote").classList.add("hidden");
+        }
+        function adaugaNota(event) {
+            event.preventDefault();
+            var nota = document.querySelector("[name='nota']").value;
+            notaNumeric = Number(nota);
+            listaElevi[indexElev].addNota(notaNumeric);
+            drawElevi();
+            drawNote();
+            document.querySelector('#add-n').reset();
+            
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Lista elevi</h1>
+    <fieldset>
+        <form onsubmit="adaugaElev(event)" id="add-e">
+            Nume:
+            <input type="text" name="nume" />
+            <input type="submit" value="Adauga Elev" />
+        </form>
+    </fieldset>
+    </br>
+    <fieldset>
+        <div>
+            <input type="button" value="Sorteaza ascendent dupa medie note" onclick="sortAscM()">
+        </div>
+        <div>
+            <input type="button" value="Sorteaza descendent dupa medie note" onclick="sortDescM()">
+        </div>
+        <table id="tabelElevi">
+            <thead>
+                
+                <tr>
+                    <th>Nume</th>
+                    <th>Medie Note</th>
+                    
+                    <th></th>
+                    
+                </tr>
+                
+            </thead>
+            
+            <tbody>
+
+            </tbody>
+            
+        </table>
+        
+    </fieldset>
+
+<div class="hidden" id="adaugareNote">
+    <div>
+        <input type="button" value="Ascunde notele" onclick="ascundeNote()">
+    </div>
+    </br>
+   <h4> Note Elev: <span name="numeElev"></span></h4>
+    <fieldset>
+        <form onsubmit="adaugaNota(event)" id="add-n">
+            Nota:
+            <input type="text" name="nota" />
+            <input type="submit" value="Adauga Nota" />
+        </form>
+    </fieldset>
+    <fieldset>
+        <div>
+            <input type="button" value="Sorteaza ascendent notele" onclick="sortAscN()">
+        </div>
+        <div>
+            <input type="button" value="Sorteaza descendent notele" onclick="sortDescN()">
+        </div>
+        <table id="tabelNote">
+            <thead>
+                <tr>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+
+</body>
+
+</html>
