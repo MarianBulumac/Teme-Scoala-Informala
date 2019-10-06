@@ -9,6 +9,9 @@
     <script src="admin.js"></script>
   </head>
   <body onload="draw();">
+    <div class="backgroundLoader hidden">
+      <div class="loader"></div>
+    </div>
     <div class="main">
       <div class="home">
         <a href="../home/index.html"> <h3>BACK HOME</h3></a>
@@ -54,7 +57,7 @@
               Descriere:
             </td>
             <td>
-              <input type="text" name="descriere" />
+              <textarea type="text" name="descriere"></textarea>
             </td>
           </tr>
         </table>

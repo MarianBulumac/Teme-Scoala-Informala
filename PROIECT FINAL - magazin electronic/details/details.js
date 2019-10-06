@@ -1,11 +1,13 @@
 var produse = [];
 var i = window.location.search.substring(4);
 async function detalii() {
+    document.querySelector(".backgroundLoader").classList.remove("hidden");
 
     var response = await fetch(
         `https://proiect-final-marian.firebaseio.com/produse/${i}.json`
     );
     window.produse = await response.json();
+    document.querySelector(".backgroundLoader").classList.add("hidden");
     var str = "";
 
     str += `
@@ -49,8 +51,10 @@ async function detalii() {
 
 
 async function addCos(event, i) {
+    document.querySelector(".backgroundLoader").classList.remove("hidden");
 
     var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos/${i}.json`);
+    document.querySelector(".backgroundLoader").classList.add("hidden");
     produseCos = await response.json();
     var found = false;
     var val = document.querySelector("#cantitate").value;
@@ -81,11 +85,13 @@ async function addCos(event, i) {
             cantitate: document.querySelector("#cantitate").value
 
         }
+        document.querySelector(".backgroundLoader").classList.remove("hidden");
         var response = await fetch(`https://proiect-final-marian.firebaseio.com/cos/${i}.json`, {
             method: "put",
             body: JSON.stringify(obj)
 
         });
+        document.querySelector(".backgroundLoader").classList.add("hidden");
         alert("Produsul a fost adaugat in cos")
 
     } else {

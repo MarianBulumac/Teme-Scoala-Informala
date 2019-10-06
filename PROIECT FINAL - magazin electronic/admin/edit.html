@@ -10,8 +10,10 @@
         async function editare(){
             var i= window.location.search.substring(4);
             event.preventDefault();
+            document.querySelector(".backgroundLoader").classList.remove("hidden");
             var response = await fetch(`https://proiect-final-marian.firebaseio.com/produse.json`);
             list = await response.json();
+            document.querySelector(".backgroundLoader").classList.add("hidden");
         
                 document.querySelector("[name='nume']").value=list[i].nume;
                 document.querySelector("[name='imagine']").value=list[i].imagine;
@@ -33,11 +35,12 @@
                 descriere: document.querySelector("[name='descriere']").value
             }
 					list[i] = obj;
-				
+          document.querySelector(".backgroundLoader").classList.add("hidden");
 					var response = await fetch(`https://proiect-final-marian.firebaseio.com/produse/${i}.json`,{
 						method:"put",
 						body:JSON.stringify(obj)
-					});
+          });
+          document.querySelector(".backgroundLoader").classList.remove("hidden");
            
         
           
@@ -87,10 +90,60 @@
               color: #551a8c;
               font-weight: bold;
             }
+
+            .loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-right: 16px solid green;
+    border-bottom: 16px solid red;
+    border-left: 16px solid pink;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hidden {
+    display: none;
+    text-align: center;
+}
+
+.backgroundLoader {
+    position: fixed;
+    background-color: rgba(255, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
           
           </style>
   </head>
   <body onload = "editare()">
+      <div class="backgroundLoader hidden">
+          <div class="loader"></div>
+        </div>
         <div id="container" style="background-color: #FFB5B5; max-width:1000px">
                 <span>Modifica produsul (Admin)</span>
           

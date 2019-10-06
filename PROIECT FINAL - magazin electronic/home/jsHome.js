@@ -1,9 +1,13 @@
 var list = [];
 async function draw() {
+
+    document.querySelector(".backgroundLoader").classList.remove("hidden");
+
     var response = await fetch(
         "https://proiect-final-marian.firebaseio.com/produse.json"
     );
     window.list = await response.json();
+    document.querySelector(".backgroundLoader").classList.add("hidden");
     var str = "";
     for (var i in list) {
         if (list[i] === null) {
